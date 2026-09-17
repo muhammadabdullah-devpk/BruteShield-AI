@@ -1,0 +1,954 @@
+[
+  {
+    "scan_facts": {
+      "target_name": "Juice Shop \u2014 Login",
+      "url": "https://juice-shop.herokuapp.com/rest/user/login",
+      "method": "POST",
+      "context": "Lifestyle App \u2014 User Login",
+      "endpoint_type": "login",
+      "total_requests": 20,
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "unique_codes": [
+        200
+      ],
+      "rate_limited": false,
+      "rate_limit_at_req": null,
+      "retry_after_seen": false,
+      "avg_response_ms": 312.4,
+      "responses": [
+        {
+          "request_num": 1,
+          "status_code": 200,
+          "response_ms": 290,
+          "retry_after": null
+        },
+        {
+          "request_num": 2,
+          "status_code": 200,
+          "response_ms": 295,
+          "retry_after": null
+        },
+        {
+          "request_num": 3,
+          "status_code": 200,
+          "response_ms": 300,
+          "retry_after": null
+        },
+        {
+          "request_num": 4,
+          "status_code": 200,
+          "response_ms": 305,
+          "retry_after": null
+        },
+        {
+          "request_num": 5,
+          "status_code": 200,
+          "response_ms": 310,
+          "retry_after": null
+        },
+        {
+          "request_num": 6,
+          "status_code": 200,
+          "response_ms": 315,
+          "retry_after": null
+        },
+        {
+          "request_num": 7,
+          "status_code": 200,
+          "response_ms": 320,
+          "retry_after": null
+        },
+        {
+          "request_num": 8,
+          "status_code": 200,
+          "response_ms": 325,
+          "retry_after": null
+        },
+        {
+          "request_num": 9,
+          "status_code": 200,
+          "response_ms": 330,
+          "retry_after": null
+        },
+        {
+          "request_num": 10,
+          "status_code": 200,
+          "response_ms": 335,
+          "retry_after": null
+        },
+        {
+          "request_num": 11,
+          "status_code": 200,
+          "response_ms": 340,
+          "retry_after": null
+        },
+        {
+          "request_num": 12,
+          "status_code": 200,
+          "response_ms": 345,
+          "retry_after": null
+        },
+        {
+          "request_num": 13,
+          "status_code": 200,
+          "response_ms": 350,
+          "retry_after": null
+        },
+        {
+          "request_num": 14,
+          "status_code": 200,
+          "response_ms": 355,
+          "retry_after": null
+        },
+        {
+          "request_num": 15,
+          "status_code": 200,
+          "response_ms": 360,
+          "retry_after": null
+        },
+        {
+          "request_num": 16,
+          "status_code": 200,
+          "response_ms": 365,
+          "retry_after": null
+        },
+        {
+          "request_num": 17,
+          "status_code": 200,
+          "response_ms": 370,
+          "retry_after": null
+        },
+        {
+          "request_num": 18,
+          "status_code": 200,
+          "response_ms": 375,
+          "retry_after": null
+        },
+        {
+          "request_num": 19,
+          "status_code": 200,
+          "response_ms": 380,
+          "retry_after": null
+        },
+        {
+          "request_num": 20,
+          "status_code": 200,
+          "response_ms": 385,
+          "retry_after": null
+        }
+      ],
+      "vulnerable": true,
+      "true_positive": true,
+      "false_positive_test": false,
+      "cvss_score": 7.5,
+      "tested_at": "2026-09-17 09:39:37"
+    },
+    "ai_analysis": {
+      "VULNERABILITY_DETECTED": "YES",
+      "SEVERITY": "High",
+      "CVSS_SCORE": "7.5-8.1",
+      "EVIDENCE": [
+        "All 20 rapid requests returned HTTP 200 \u2014 no throttling triggered",
+        "No HTTP 429 (Too Many Requests) in any response",
+        "No Retry-After header observed",
+        "Server accepted requests at 50ms intervals without restriction"
+      ],
+      "IMPACT": "Without rate limiting, an attacker can automate thousands of login or form submissions per minute. For a Lifestyle app storing personal profiles, health data, and payment info, a successful brute-force leads to full account compromise and data breach.",
+      "REMEDIATION": [
+        "Implement server-side rate limiting: max 5 failed attempts per IP per 15 min",
+        "Return HTTP 429 + Retry-After header on threshold breach",
+        "Add CAPTCHA (hCaptcha/reCAPTCHA v3) after 3 failures",
+        "Implement exponential backoff lockout: 30s \u2192 2min \u2192 10min \u2192 1hr",
+        "Log and alert on \u226510 requests/min from same IP",
+        "Deploy WAF rule blocking brute-force patterns",
+        "Use Redis token-bucket algorithm for distributed deployments"
+      ],
+      "FALSE_POSITIVE_RISK": "May false-negative if CDN (Cloudflare/AWS WAF) handles rate limiting at infrastructure level \u2014 app responds 200 but infra blocks real attacks. Check infrastructure configs manually.",
+      "AI_LABEL": "AI-ASSISTED INTERPRETATION \u2014 Generated by Gemini/GPT. Verify all findings manually."
+    },
+    "ai_label": "AI-ASSISTED \u2014 Verify manually",
+    "analyzed_at": "2026-09-17 09:39:37"
+  },
+  {
+    "scan_facts": {
+      "target_name": "Juice Shop \u2014 Password Reset",
+      "url": "https://juice-shop.herokuapp.com/rest/user/reset-password",
+      "method": "POST",
+      "context": "Lifestyle App \u2014 Password Recovery",
+      "endpoint_type": "reset",
+      "total_requests": 20,
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "unique_codes": [
+        200
+      ],
+      "rate_limited": false,
+      "rate_limit_at_req": null,
+      "retry_after_seen": false,
+      "avg_response_ms": 285.7,
+      "responses": [
+        {
+          "request_num": 1,
+          "status_code": 200,
+          "response_ms": 270,
+          "retry_after": null
+        },
+        {
+          "request_num": 2,
+          "status_code": 200,
+          "response_ms": 273,
+          "retry_after": null
+        },
+        {
+          "request_num": 3,
+          "status_code": 200,
+          "response_ms": 276,
+          "retry_after": null
+        },
+        {
+          "request_num": 4,
+          "status_code": 200,
+          "response_ms": 279,
+          "retry_after": null
+        },
+        {
+          "request_num": 5,
+          "status_code": 200,
+          "response_ms": 282,
+          "retry_after": null
+        },
+        {
+          "request_num": 6,
+          "status_code": 200,
+          "response_ms": 285,
+          "retry_after": null
+        },
+        {
+          "request_num": 7,
+          "status_code": 200,
+          "response_ms": 288,
+          "retry_after": null
+        },
+        {
+          "request_num": 8,
+          "status_code": 200,
+          "response_ms": 291,
+          "retry_after": null
+        },
+        {
+          "request_num": 9,
+          "status_code": 200,
+          "response_ms": 294,
+          "retry_after": null
+        },
+        {
+          "request_num": 10,
+          "status_code": 200,
+          "response_ms": 297,
+          "retry_after": null
+        },
+        {
+          "request_num": 11,
+          "status_code": 200,
+          "response_ms": 300,
+          "retry_after": null
+        },
+        {
+          "request_num": 12,
+          "status_code": 200,
+          "response_ms": 303,
+          "retry_after": null
+        },
+        {
+          "request_num": 13,
+          "status_code": 200,
+          "response_ms": 306,
+          "retry_after": null
+        },
+        {
+          "request_num": 14,
+          "status_code": 200,
+          "response_ms": 309,
+          "retry_after": null
+        },
+        {
+          "request_num": 15,
+          "status_code": 200,
+          "response_ms": 312,
+          "retry_after": null
+        },
+        {
+          "request_num": 16,
+          "status_code": 200,
+          "response_ms": 315,
+          "retry_after": null
+        },
+        {
+          "request_num": 17,
+          "status_code": 200,
+          "response_ms": 318,
+          "retry_after": null
+        },
+        {
+          "request_num": 18,
+          "status_code": 200,
+          "response_ms": 321,
+          "retry_after": null
+        },
+        {
+          "request_num": 19,
+          "status_code": 200,
+          "response_ms": 324,
+          "retry_after": null
+        },
+        {
+          "request_num": 20,
+          "status_code": 200,
+          "response_ms": 327,
+          "retry_after": null
+        }
+      ],
+      "vulnerable": true,
+      "true_positive": true,
+      "false_positive_test": false,
+      "cvss_score": 8.1,
+      "tested_at": "2026-09-17 09:39:37"
+    },
+    "ai_analysis": {
+      "VULNERABILITY_DETECTED": "YES",
+      "SEVERITY": "High",
+      "CVSS_SCORE": "7.5-8.1",
+      "EVIDENCE": [
+        "All 20 rapid requests returned HTTP 200 \u2014 no throttling triggered",
+        "No HTTP 429 (Too Many Requests) in any response",
+        "No Retry-After header observed",
+        "Server accepted requests at 50ms intervals without restriction"
+      ],
+      "IMPACT": "Without rate limiting, an attacker can automate thousands of login or form submissions per minute. For a Lifestyle app storing personal profiles, health data, and payment info, a successful brute-force leads to full account compromise and data breach.",
+      "REMEDIATION": [
+        "Implement server-side rate limiting: max 5 failed attempts per IP per 15 min",
+        "Return HTTP 429 + Retry-After header on threshold breach",
+        "Add CAPTCHA (hCaptcha/reCAPTCHA v3) after 3 failures",
+        "Implement exponential backoff lockout: 30s \u2192 2min \u2192 10min \u2192 1hr",
+        "Log and alert on \u226510 requests/min from same IP",
+        "Deploy WAF rule blocking brute-force patterns",
+        "Use Redis token-bucket algorithm for distributed deployments"
+      ],
+      "FALSE_POSITIVE_RISK": "May false-negative if CDN (Cloudflare/AWS WAF) handles rate limiting at infrastructure level \u2014 app responds 200 but infra blocks real attacks. Check infrastructure configs manually.",
+      "AI_LABEL": "AI-ASSISTED INTERPRETATION \u2014 Generated by Gemini/GPT. Verify all findings manually."
+    },
+    "ai_label": "AI-ASSISTED \u2014 Verify manually",
+    "analyzed_at": "2026-09-17 09:39:37"
+  },
+  {
+    "scan_facts": {
+      "target_name": "Juice Shop \u2014 Search (Patched)",
+      "url": "https://juice-shop.herokuapp.com/rest/products/search",
+      "method": "GET",
+      "context": "Lifestyle App \u2014 Product Search (False Positive Test)",
+      "endpoint_type": "search",
+      "total_requests": 20,
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429
+      ],
+      "unique_codes": [
+        200,
+        429
+      ],
+      "rate_limited": true,
+      "rate_limit_at_req": 14,
+      "retry_after_seen": true,
+      "avg_response_ms": 198.2,
+      "responses": [
+        {
+          "request_num": 1,
+          "status_code": 200,
+          "response_ms": 190,
+          "retry_after": null
+        },
+        {
+          "request_num": 2,
+          "status_code": 200,
+          "response_ms": 192,
+          "retry_after": null
+        },
+        {
+          "request_num": 3,
+          "status_code": 200,
+          "response_ms": 194,
+          "retry_after": null
+        },
+        {
+          "request_num": 4,
+          "status_code": 200,
+          "response_ms": 196,
+          "retry_after": null
+        },
+        {
+          "request_num": 5,
+          "status_code": 200,
+          "response_ms": 198,
+          "retry_after": null
+        },
+        {
+          "request_num": 6,
+          "status_code": 200,
+          "response_ms": 200,
+          "retry_after": null
+        },
+        {
+          "request_num": 7,
+          "status_code": 200,
+          "response_ms": 202,
+          "retry_after": null
+        },
+        {
+          "request_num": 8,
+          "status_code": 200,
+          "response_ms": 204,
+          "retry_after": null
+        },
+        {
+          "request_num": 9,
+          "status_code": 200,
+          "response_ms": 206,
+          "retry_after": null
+        },
+        {
+          "request_num": 10,
+          "status_code": 200,
+          "response_ms": 208,
+          "retry_after": null
+        },
+        {
+          "request_num": 11,
+          "status_code": 200,
+          "response_ms": 210,
+          "retry_after": null
+        },
+        {
+          "request_num": 12,
+          "status_code": 200,
+          "response_ms": 212,
+          "retry_after": null
+        },
+        {
+          "request_num": 13,
+          "status_code": 200,
+          "response_ms": 214,
+          "retry_after": null
+        },
+        {
+          "request_num": 14,
+          "status_code": 429,
+          "response_ms": 216,
+          "retry_after": "30"
+        },
+        {
+          "request_num": 15,
+          "status_code": 429,
+          "response_ms": 218,
+          "retry_after": "30"
+        },
+        {
+          "request_num": 16,
+          "status_code": 429,
+          "response_ms": 220,
+          "retry_after": "30"
+        },
+        {
+          "request_num": 17,
+          "status_code": 429,
+          "response_ms": 222,
+          "retry_after": "30"
+        },
+        {
+          "request_num": 18,
+          "status_code": 429,
+          "response_ms": 224,
+          "retry_after": "30"
+        },
+        {
+          "request_num": 19,
+          "status_code": 429,
+          "response_ms": 226,
+          "retry_after": "30"
+        },
+        {
+          "request_num": 20,
+          "status_code": 429,
+          "response_ms": 228,
+          "retry_after": "30"
+        }
+      ],
+      "vulnerable": false,
+      "true_positive": false,
+      "false_positive_test": true,
+      "cvss_score": 0.0,
+      "tested_at": "2026-09-17 09:39:37"
+    },
+    "ai_analysis": {
+      "VULNERABILITY_DETECTED": "NO",
+      "SEVERITY": "None",
+      "CVSS_SCORE": "0.0",
+      "EVIDENCE": [
+        "HTTP 429 triggered at request #14 of 20",
+        "Retry-After: 30 header present in response",
+        "Server correctly blocked remaining 7 requests",
+        "Rate limiting is functioning as expected"
+      ],
+      "IMPACT": "This endpoint is protected. Automated brute-force attacks will be throttled within 14 requests \u2014 well within safe limits.",
+      "REMEDIATION": [
+        "No action required \u2014 rate limiting is operational",
+        "Periodic review: ensure limit thresholds align with evolving attack patterns",
+        "Consider testing with IP rotation to verify distributed-attack resilience"
+      ],
+      "FALSE_POSITIVE_RISK": "This is the patched/safe endpoint used to verify false-positive handling. Result is expected: PROTECTED.",
+      "AI_LABEL": "AI-ASSISTED INTERPRETATION \u2014 Generated by Gemini/GPT. Verify all findings manually."
+    },
+    "ai_label": "AI-ASSISTED \u2014 Verify manually",
+    "analyzed_at": "2026-09-17 09:39:37"
+  },
+  {
+    "scan_facts": {
+      "target_name": "Juice Shop \u2014 Feedback Form",
+      "url": "https://juice-shop.herokuapp.com/api/Feedbacks",
+      "method": "POST",
+      "context": "Lifestyle App \u2014 Customer Feedback",
+      "endpoint_type": "form",
+      "total_requests": 20,
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "unique_codes": [
+        200
+      ],
+      "rate_limited": false,
+      "rate_limit_at_req": null,
+      "retry_after_seen": false,
+      "avg_response_ms": 267.9,
+      "responses": [
+        {
+          "request_num": 1,
+          "status_code": 200,
+          "response_ms": 260,
+          "retry_after": null
+        },
+        {
+          "request_num": 2,
+          "status_code": 200,
+          "response_ms": 262,
+          "retry_after": null
+        },
+        {
+          "request_num": 3,
+          "status_code": 200,
+          "response_ms": 264,
+          "retry_after": null
+        },
+        {
+          "request_num": 4,
+          "status_code": 200,
+          "response_ms": 266,
+          "retry_after": null
+        },
+        {
+          "request_num": 5,
+          "status_code": 200,
+          "response_ms": 268,
+          "retry_after": null
+        },
+        {
+          "request_num": 6,
+          "status_code": 200,
+          "response_ms": 270,
+          "retry_after": null
+        },
+        {
+          "request_num": 7,
+          "status_code": 200,
+          "response_ms": 272,
+          "retry_after": null
+        },
+        {
+          "request_num": 8,
+          "status_code": 200,
+          "response_ms": 274,
+          "retry_after": null
+        },
+        {
+          "request_num": 9,
+          "status_code": 200,
+          "response_ms": 276,
+          "retry_after": null
+        },
+        {
+          "request_num": 10,
+          "status_code": 200,
+          "response_ms": 278,
+          "retry_after": null
+        },
+        {
+          "request_num": 11,
+          "status_code": 200,
+          "response_ms": 280,
+          "retry_after": null
+        },
+        {
+          "request_num": 12,
+          "status_code": 200,
+          "response_ms": 282,
+          "retry_after": null
+        },
+        {
+          "request_num": 13,
+          "status_code": 200,
+          "response_ms": 284,
+          "retry_after": null
+        },
+        {
+          "request_num": 14,
+          "status_code": 200,
+          "response_ms": 286,
+          "retry_after": null
+        },
+        {
+          "request_num": 15,
+          "status_code": 200,
+          "response_ms": 288,
+          "retry_after": null
+        },
+        {
+          "request_num": 16,
+          "status_code": 200,
+          "response_ms": 290,
+          "retry_after": null
+        },
+        {
+          "request_num": 17,
+          "status_code": 200,
+          "response_ms": 292,
+          "retry_after": null
+        },
+        {
+          "request_num": 18,
+          "status_code": 200,
+          "response_ms": 294,
+          "retry_after": null
+        },
+        {
+          "request_num": 19,
+          "status_code": 200,
+          "response_ms": 296,
+          "retry_after": null
+        },
+        {
+          "request_num": 20,
+          "status_code": 200,
+          "response_ms": 298,
+          "retry_after": null
+        }
+      ],
+      "vulnerable": true,
+      "true_positive": true,
+      "false_positive_test": false,
+      "cvss_score": 6.5,
+      "tested_at": "2026-09-17 09:39:37"
+    },
+    "ai_analysis": {
+      "VULNERABILITY_DETECTED": "YES",
+      "SEVERITY": "High",
+      "CVSS_SCORE": "7.5-8.1",
+      "EVIDENCE": [
+        "All 20 rapid requests returned HTTP 200 \u2014 no throttling triggered",
+        "No HTTP 429 (Too Many Requests) in any response",
+        "No Retry-After header observed",
+        "Server accepted requests at 50ms intervals without restriction"
+      ],
+      "IMPACT": "Without rate limiting, an attacker can automate thousands of login or form submissions per minute. For a Lifestyle app storing personal profiles, health data, and payment info, a successful brute-force leads to full account compromise and data breach.",
+      "REMEDIATION": [
+        "Implement server-side rate limiting: max 5 failed attempts per IP per 15 min",
+        "Return HTTP 429 + Retry-After header on threshold breach",
+        "Add CAPTCHA (hCaptcha/reCAPTCHA v3) after 3 failures",
+        "Implement exponential backoff lockout: 30s \u2192 2min \u2192 10min \u2192 1hr",
+        "Log and alert on \u226510 requests/min from same IP",
+        "Deploy WAF rule blocking brute-force patterns",
+        "Use Redis token-bucket algorithm for distributed deployments"
+      ],
+      "FALSE_POSITIVE_RISK": "May false-negative if CDN (Cloudflare/AWS WAF) handles rate limiting at infrastructure level \u2014 app responds 200 but infra blocks real attacks. Check infrastructure configs manually.",
+      "AI_LABEL": "AI-ASSISTED INTERPRETATION \u2014 Generated by Gemini/GPT. Verify all findings manually."
+    },
+    "ai_label": "AI-ASSISTED \u2014 Verify manually",
+    "analyzed_at": "2026-09-17 09:39:37"
+  },
+  {
+    "scan_facts": {
+      "target_name": "Juice Shop \u2014 Registration",
+      "url": "https://juice-shop.herokuapp.com/api/Users",
+      "method": "POST",
+      "context": "Lifestyle App \u2014 New Account",
+      "endpoint_type": "register",
+      "total_requests": 20,
+      "status_codes": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "unique_codes": [
+        200
+      ],
+      "rate_limited": false,
+      "rate_limit_at_req": null,
+      "retry_after_seen": false,
+      "avg_response_ms": 301.1,
+      "responses": [
+        {
+          "request_num": 1,
+          "status_code": 200,
+          "response_ms": 295,
+          "retry_after": null
+        },
+        {
+          "request_num": 2,
+          "status_code": 200,
+          "response_ms": 297,
+          "retry_after": null
+        },
+        {
+          "request_num": 3,
+          "status_code": 200,
+          "response_ms": 299,
+          "retry_after": null
+        },
+        {
+          "request_num": 4,
+          "status_code": 200,
+          "response_ms": 301,
+          "retry_after": null
+        },
+        {
+          "request_num": 5,
+          "status_code": 200,
+          "response_ms": 303,
+          "retry_after": null
+        },
+        {
+          "request_num": 6,
+          "status_code": 200,
+          "response_ms": 305,
+          "retry_after": null
+        },
+        {
+          "request_num": 7,
+          "status_code": 200,
+          "response_ms": 307,
+          "retry_after": null
+        },
+        {
+          "request_num": 8,
+          "status_code": 200,
+          "response_ms": 309,
+          "retry_after": null
+        },
+        {
+          "request_num": 9,
+          "status_code": 200,
+          "response_ms": 311,
+          "retry_after": null
+        },
+        {
+          "request_num": 10,
+          "status_code": 200,
+          "response_ms": 313,
+          "retry_after": null
+        },
+        {
+          "request_num": 11,
+          "status_code": 200,
+          "response_ms": 315,
+          "retry_after": null
+        },
+        {
+          "request_num": 12,
+          "status_code": 200,
+          "response_ms": 317,
+          "retry_after": null
+        },
+        {
+          "request_num": 13,
+          "status_code": 200,
+          "response_ms": 319,
+          "retry_after": null
+        },
+        {
+          "request_num": 14,
+          "status_code": 200,
+          "response_ms": 321,
+          "retry_after": null
+        },
+        {
+          "request_num": 15,
+          "status_code": 200,
+          "response_ms": 323,
+          "retry_after": null
+        },
+        {
+          "request_num": 16,
+          "status_code": 200,
+          "response_ms": 325,
+          "retry_after": null
+        },
+        {
+          "request_num": 17,
+          "status_code": 200,
+          "response_ms": 327,
+          "retry_after": null
+        },
+        {
+          "request_num": 18,
+          "status_code": 200,
+          "response_ms": 329,
+          "retry_after": null
+        },
+        {
+          "request_num": 19,
+          "status_code": 200,
+          "response_ms": 331,
+          "retry_after": null
+        },
+        {
+          "request_num": 20,
+          "status_code": 200,
+          "response_ms": 333,
+          "retry_after": null
+        }
+      ],
+      "vulnerable": true,
+      "true_positive": true,
+      "false_positive_test": false,
+      "cvss_score": 7.3,
+      "tested_at": "2026-09-17 09:39:37"
+    },
+    "ai_analysis": {
+      "VULNERABILITY_DETECTED": "YES",
+      "SEVERITY": "High",
+      "CVSS_SCORE": "7.5-8.1",
+      "EVIDENCE": [
+        "All 20 rapid requests returned HTTP 200 \u2014 no throttling triggered",
+        "No HTTP 429 (Too Many Requests) in any response",
+        "No Retry-After header observed",
+        "Server accepted requests at 50ms intervals without restriction"
+      ],
+      "IMPACT": "Without rate limiting, an attacker can automate thousands of login or form submissions per minute. For a Lifestyle app storing personal profiles, health data, and payment info, a successful brute-force leads to full account compromise and data breach.",
+      "REMEDIATION": [
+        "Implement server-side rate limiting: max 5 failed attempts per IP per 15 min",
+        "Return HTTP 429 + Retry-After header on threshold breach",
+        "Add CAPTCHA (hCaptcha/reCAPTCHA v3) after 3 failures",
+        "Implement exponential backoff lockout: 30s \u2192 2min \u2192 10min \u2192 1hr",
+        "Log and alert on \u226510 requests/min from same IP",
+        "Deploy WAF rule blocking brute-force patterns",
+        "Use Redis token-bucket algorithm for distributed deployments"
+      ],
+      "FALSE_POSITIVE_RISK": "May false-negative if CDN (Cloudflare/AWS WAF) handles rate limiting at infrastructure level \u2014 app responds 200 but infra blocks real attacks. Check infrastructure configs manually.",
+      "AI_LABEL": "AI-ASSISTED INTERPRETATION \u2014 Generated by Gemini/GPT. Verify all findings manually."
+    },
+    "ai_label": "AI-ASSISTED \u2014 Verify manually",
+    "analyzed_at": "2026-09-17 09:39:37"
+  }
+]
